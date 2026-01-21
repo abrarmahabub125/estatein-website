@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const HomeSectionTemplate = ({ sectionData, renderCard }) => {
+const HomeSectionTemplate = ({ sectionData, renderCard, padding }) => {
   const { id, heading, subHeading, data, buttonText, pathForView } =
     sectionData;
   const [isAtStart, setIsAtStart] = useState(true);
@@ -47,7 +47,10 @@ const HomeSectionTemplate = ({ sectionData, renderCard }) => {
   }, []);
 
   return (
-    <section key={id} className="px-4 py-12 md:px-5 xl:px-28">
+    <section
+      key={id}
+      className={` ${padding ? "p-0" : "px-4 py-12 md:px-5 xl:px-28"}`}
+    >
       <div>
         <div>
           <div className="flex items-center gap-1.5">

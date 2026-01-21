@@ -124,7 +124,7 @@ const ContactForm = () => {
       agreedToTerms: checked,
     });
 
-    toast.success("Form submitted successfully!");
+    toast.success("Message sent successfully!");
 
     // Reset form fields
     setFirstName("");

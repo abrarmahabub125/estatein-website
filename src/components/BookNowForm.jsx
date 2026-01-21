@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Phone } from "lucide-react";
 import { Mail } from "lucide-react";
 import { ChevronDown } from "lucide-react";
@@ -22,6 +22,23 @@ const BookNowForm = () => {
 
   const [checked, setChecked] = useState(false);
   const [hovered, setHovered] = useState(false);
+
+  //input references can be added here if needed
+  const firstNameRef = useRef(null);
+  const lastNameRef = useRef(null);
+  const emailRef = useRef(null);
+  const contactEmailRef = useRef(null);
+  const phoneRef = useRef(null);
+  const messageRef = useRef(null);
+
+  //Moving next input on enter key press can be added here if needed
+  const handleKeyDown = (e, nextRef) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+
+      nextRef?.current?.focus();
+    }
+  };
 
   // handel form submit here
   const handelFormSubmit = (e) => {
@@ -174,10 +191,12 @@ const BookNowForm = () => {
               </p>
               <input
                 name="firstName"
+                ref={firstNameRef}
                 className="border-grey-15 bg-grey-10 mt-2 w-full rounded-md border px-4 py-2.5 text-sm text-white outline-0 lg:mt-4 lg:py-3 lg:text-base"
                 type="text"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
+                onKeyDown={(e) => handleKeyDown(e, lastNameRef)}
                 placeholder="Enter First Name"
               />
             </div>
@@ -188,10 +207,12 @@ const BookNowForm = () => {
               </p>
               <input
                 name="lastName"
+                ref={lastNameRef}
                 className="border-grey-15 bg-grey-10 mt-2 w-full rounded-md border px-4 py-2.5 text-sm text-white outline-0 lg:mt-4 lg:py-3 lg:text-base"
                 type="text"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
+                onKeyDown={(e) => handleKeyDown(e, emailRef)}
                 placeholder="Enter Last Name"
               />
             </div>
@@ -202,11 +223,13 @@ const BookNowForm = () => {
               </p>
               <input
                 autoComplete="off"
+                ref={emailRef}
                 name="email"
                 className="border-grey-15 bg-grey-10 mt-2 w-full rounded-md border px-4 py-2.5 text-sm text-white outline-0 lg:mt-4 lg:py-3 lg:text-base"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                onKeyDown={(e) => handleKeyDown(e, phoneRef)}
                 placeholder="Enter your Email"
               />
             </div>
@@ -217,10 +240,12 @@ const BookNowForm = () => {
               </p>
               <input
                 name="phone"
+                ref={phoneRef}
                 className="border-grey-15 bg-grey-10 mt-2 w-full rounded-md border px-4 py-2.5 text-sm text-white outline-0 lg:mt-4 lg:py-3 lg:text-base"
                 type="number"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
+                onKeyDown={(e) => handleKeyDown(e, contactEmailRef)}
                 placeholder="Enter Phone Number"
               />
             </div>
@@ -577,7 +602,9 @@ const BookNowForm = () => {
                   <Mail className="text-grey-60 absolute top-1/2 left-3 size-5 -translate-y-1/2" />
                   <input
                     value={contactEmail}
+                    ref={contactEmailRef}
                     onChange={(e) => setContactEmail(e.target.value)}
+                    onKeyDown={(e) => handleKeyDown(e, messageRef)}
                     className="border-grey-15 bg-grey-10 w-full rounded-md border px-4 py-2.5 pl-12 text-sm text-white outline-0 lg:py-3 lg:text-base"
                     type="email"
                     placeholder="Enter your E-mail"
@@ -592,6 +619,7 @@ const BookNowForm = () => {
               </p>
               <textarea
                 value={message}
+                ref={messageRef}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Message"
                 className="border-grey-15 bg-grey-10 mt-2 flex-1 resize-none rounded-md border px-4 py-2 text-sm text-white outline-0 lg:mt-4 lg:text-base"
