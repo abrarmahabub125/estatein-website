@@ -1,1 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  font-family: "Urbanist", sans-serif;
+}
+html::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  display: none;
+}
+html {
+  -ms-overflow-style: none; /* IE & old Edge */
+  scrollbar-width: none; /* Firefox */
+  -webkit-overflow-scrolling: touch; /* iOS smooth scroll */
+}
 @import "tailwindcss";
+
+@layer base {
+  :root {
+    --grey-08: #141414;
+    --grey-10: #1a1a1a;
+    --grey-15: #262626;
+    --grey-20: #333333;
+    --grey-30: #4d4d4d;
+    --grey-40: #666666;
+    --grey-50: #808080;
+    --grey-60: #999999;
+
+    --purple-60: #703bf7;
+    --purple-75: #a685fa;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
+
+@theme inline {
+  --color-grey-08: var(--grey-08);
+  --color-grey-10: var(--grey-10);
+  --color-grey-15: var(--grey-15);
+  --color-grey-20: var(--grey-20);
+  --color-grey-30: var(--grey-30);
+  --color-grey-40: var(--grey-40);
+  --color-grey-50: var(--grey-50);
+  --color-grey-60: var(--grey-60);
+
+  --color-purple-60: var(--purple-60);
+  --color-purple-75: var(--purple-75);
+
+  /* tailwind css class mapping with custom font size  */
+  --text-2xl: 1.75rem;
+  --text-2xl--line-height: 2.25rem;
+  --text-3xl: 2.375rem;
+  --text-3xl--line-height: 3rem;
+  --text-4xl: 3rem;
+  --text-4xl--line-height: 3.75rem;
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE & old Edge */
+    scrollbar-width: none; /* Firefox */
+    -webkit-overflow-scrolling: touch; /* iOS smooth scroll */
+  }
+
+  .footer-link {
+    @apply mb-1 text-sm text-white transition-all duration-200 hover:underline;
+  }
+}
